@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.JokeTeller;
@@ -14,7 +15,6 @@ import com.example.android.jokeandroidlib.JokeActivity;
 
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +46,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void tellJoke(View view) {
         //showJokeToast();
-        launchJokeActivity();
+        // Start Joke Android Library Activity to show the joke.
+        //launchJokeActivity();
+
+        new LoadJokeEndpointAsyncTask(this).execute();
     }
 
     private void showJokeToast() {
