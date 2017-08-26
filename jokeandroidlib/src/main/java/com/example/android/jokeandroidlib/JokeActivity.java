@@ -20,7 +20,10 @@ public class JokeActivity extends AppCompatActivity {
         setContentView(R.layout.joke_layout);
 
         Bundle bundle = getIntent().getExtras();
-        String joke = bundle.getString(JOKE, "");
+        String joke = "";
+        if (bundle != null) {
+            joke = bundle.getString(JOKE);
+        }
 
         jokeView = (TextView) findViewById(R.id.joke_container);
         // Set joke from Google Endpoint
