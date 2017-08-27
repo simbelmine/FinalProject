@@ -7,10 +7,6 @@ import android.widget.TextView;
 
 import static com.example.android.jokeandroidlib.AndroidLibConstants.JOKE;
 
-/**
- * Created by Sve on 8/19/17.
- */
-
 public class JokeActivity extends AppCompatActivity {
     private TextView jokeView;
 
