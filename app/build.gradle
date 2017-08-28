@@ -47,6 +47,7 @@ android {
 
 configurations.all() {
     exclude group: "org.apache.httpcomponents", module: "httpclient"
+    exclude module: 'jsr305'
 }
 
 dependencies {
@@ -73,3 +74,13 @@ dependencies {
     compile group: 'com.google.api-client', name: 'google-api-client', version: '1.22.0'
     compile group: 'com.google.api-client', name: 'google-api-client-android', version: '1.22.0'
 }
+
+task runAppEngine(dependsOn: ":backend:appengineRun", type: GradleBuild) {
+    project(":backend").afterEvaluate { backend ->
+        backend.extensions.appengine.daemon = true
+    }
+
+    tasks = [':app:connectedAndroidTest']
+}
+
+runAppEngine.finalizedBy ":backend:appengineStop"

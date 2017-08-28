@@ -18,10 +18,6 @@ import java.io.IOException;
 import static com.example.android.jokeandroidlib.AndroidLibConstants.JOKE;
 import static com.udacity.gradle.builditbigger.AppConstants.ROOT_URL;
 
-/**
- * Created by Sve on 8/20/17.
- */
-
 public class LoadJokeEndpointAsyncTask extends AsyncTask<Void, Void, String> {
     private Context context;
     private MyApi myApiService = null;
