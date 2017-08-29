@@ -3,7 +3,6 @@ package com.udacity.gradle.builditbigger;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,16 +18,10 @@ import com.google.android.gms.ads.MobileAds;
 
 
 public class MainActivity extends AppCompatActivity {
-    private InterstitialAd mInterstitialAd;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        initMobileAd();
-        initInterstitialAd();
-        loadInterstitialAd();
     }
 
 
@@ -60,11 +53,7 @@ public class MainActivity extends AppCompatActivity {
         // Start Joke Android Library Activity to show the joke.
         //launchJokeActivity();
 
-        if(Constants.type.FREE == Constants.type && mInterstitialAd.isLoaded()) {
-            showInterstitialAd();
-        } else {
-            new LoadJokeEndpointAsyncTask(this).execute();
-        }
+        new LoadJokeEndpointAsyncTask(this).execute();
     }
 
     private void showJokeToast() {
@@ -77,29 +66,4 @@ public class MainActivity extends AppCompatActivity {
         Intent jokeIntent = new Intent(this, JokeActivity.class);
         startActivity(jokeIntent);
     }
-
-    private void initMobileAd() {
-        MobileAds.initialize(this, BuildConfig.AD_MOB_APP_ID);
-    }
-
-    private void initInterstitialAd() {
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(BuildConfig.AD_UNIT_ID);
-        mInterstitialAd.setAdListener(adListener);
-    }
-
-    private void loadInterstitialAd() {
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-    }
-
-    private void showInterstitialAd() {
-        mInterstitialAd.show();
-    }
-
-    private AdListener adListener = new AdListener() {
-        @Override
-        public void onAdClosed() {
-            new LoadJokeEndpointAsyncTask(MainActivity.this).execute();
-        }
-    };
 }

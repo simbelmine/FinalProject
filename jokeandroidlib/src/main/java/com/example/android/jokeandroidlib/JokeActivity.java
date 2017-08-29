@@ -17,7 +17,7 @@ public class JokeActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         String joke = "";
-        if (bundle != null) {
+        if (bundle != null && getIntent().hasExtra(JOKE)) {
             joke = bundle.getString(JOKE);
         }
 
