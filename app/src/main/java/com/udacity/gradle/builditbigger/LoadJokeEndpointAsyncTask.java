@@ -12,11 +12,13 @@ import com.example.android.jokeandroidlib.JokeActivity;
 import com.example.myapplication.backend.myApi.MyApi;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
+import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
+import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 
 import java.io.IOException;
 
 import static com.example.android.jokeandroidlib.AndroidLibConstants.JOKE;
-import static com.udacity.gradle.builditbigger.AppConstants.ROOT_URL;
+import static com.udacity.gradle.builditbigger.AppConstants.LOCAL_ROOT_URL;
 
 public class LoadJokeEndpointAsyncTask extends AsyncTask<Void, Void, String> {
     private Context context;
@@ -36,8 +38,17 @@ public class LoadJokeEndpointAsyncTask extends AsyncTask<Void, Void, String> {
     @Override
     protected String doInBackground(Void... params) {
         if(myApiService == null) {
-            MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
-                    .setRootUrl(ROOT_URL);
+            MyApi.Builder builder = new MyApi.Builder(
+                    AndroidHttp.newCompatibleTransport(),
+                    new AndroidJsonFactory(), null)
+                    .setRootUrl(LOCAL_ROOT_URL)
+                    .setApplicationName(context.getString(R.string.app_name))
+                    .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
+                        @Override
+                        public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
+                            abstractGoogleClientRequest.setDisableGZipContent(true);
+                        }
+                    });
 
             myApiService = builder.build();
         }
