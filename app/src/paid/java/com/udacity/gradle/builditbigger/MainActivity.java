@@ -11,10 +11,6 @@ import android.widget.Toast;
 
 import com.example.JokeTeller;
 import com.example.android.jokeandroidlib.JokeActivity;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
 
 
 public class MainActivity extends AppCompatActivity {
