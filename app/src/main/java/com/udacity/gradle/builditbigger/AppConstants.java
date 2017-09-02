@@ -1,6 +1,8 @@
 package com.udacity.gradle.builditbigger;
 
-public class AppConstants {
+public final class AppConstants {
+    private AppConstants(){}
+
     public static final String ROOT_URL = "https://finalproject-177421.appspot.com/_ah/api/";
     // Set localhost(10.0.2.2) when testing on Emulator.
     // Set local IP address when testing on physical device.
