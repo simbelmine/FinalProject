@@ -7,7 +7,7 @@
         android:supportsRtl="true">
 
         <activity
-            android:name=".JokeActivity"
+            android:name=".activity.JokeActivity"
             android:label="@string/app_name"
             android:theme="@style/DialogTheme">
             <intent-filter>

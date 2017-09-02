@@ -1,20 +1,19 @@
-package com.udacity.gradle.builditbigger;
+package com.udacity.gradle.builditbigger.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
-import com.example.JokeTeller;
-import com.example.android.jokeandroidlib.JokeActivity;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
+import com.udacity.gradle.builditbigger.BuildConfig;
+import com.udacity.gradle.builditbigger.LoadJokeEndpointAsyncTask;
+import com.udacity.gradle.builditbigger.R;
+import com.udacity.gradle.builditbigger.utils.Constants;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -55,26 +54,11 @@ public class MainActivity extends AppCompatActivity {
 
     // onClick method
     public void tellJoke(View view) {
-        //showJokeToast();
-        // Start Joke Android Library Activity to show the joke.
-        //launchJokeActivity();
-
         if(Constants.type.FREE == Constants.type && mInterstitialAd.isLoaded()) {
             showInterstitialAd();
         } else {
             new LoadJokeEndpointAsyncTask(this).execute();
         }
-    }
-
-    private void showJokeToast() {
-        Toast toast = Toast.makeText(this, new JokeTeller().tellJoke(), Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
-    }
-
-    private void launchJokeActivity() {
-        Intent jokeIntent = new Intent(this, JokeActivity.class);
-        startActivity(jokeIntent);
     }
 
     private void initMobileAd() {

@@ -6,7 +6,7 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.intent.Intents;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.example.android.jokeandroidlib.JokeActivity;
+import com.example.android.jokeandroidlib.activity.JokeActivity;
 
 import org.hamcrest.Matcher;
 import org.junit.Test;

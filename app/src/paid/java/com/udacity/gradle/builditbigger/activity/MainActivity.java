@@ -1,16 +1,13 @@
-package com.udacity.gradle.builditbigger;
+package com.udacity.gradle.builditbigger.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
-import com.example.JokeTeller;
-import com.example.android.jokeandroidlib.JokeActivity;
+import com.udacity.gradle.builditbigger.LoadJokeEndpointAsyncTask;
+import com.udacity.gradle.builditbigger.R;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -45,21 +42,6 @@ public class MainActivity extends AppCompatActivity {
 
     // onClick method
     public void tellJoke(View view) {
-        //showJokeToast();
-        // Start Joke Android Library Activity to show the joke.
-        //launchJokeActivity();
-
         new LoadJokeEndpointAsyncTask(this).execute();
-    }
-
-    private void showJokeToast() {
-        Toast toast = Toast.makeText(this, new JokeTeller().tellJoke(), Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
-    }
-
-    private void launchJokeActivity() {
-        Intent jokeIntent = new Intent(this, JokeActivity.class);
-        startActivity(jokeIntent);
     }
 }
