@@ -31,7 +31,7 @@ it to manage apps of increasing complexity.
 * Android Support Repository
 
 # Screenshots
-
+<img src="composite_screenshot.png?raw=true" height="500" alt="Screenshot"/> 
 
 
 # License
